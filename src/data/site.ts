@@ -97,19 +97,21 @@ export const whyItMatters = [
 ];
 
 // Technologies used in the repository ("Built with").
-export const technologies = [
-  "Python",
-  "Streamlit",
-  "FAISS",
-  "BM25",
-  "Sentence Transformers",
-  "PyMuPDF",
-  "OCR",
-  "Hybrid Retrieval",
-  "Ollama (local LLMs)",
-  "GitHub Actions",
-  "Docker",
-  "pytest",
+// `what` is a plain-English gloss shown as a tooltip — written for readers
+// with no programming background, per the book's stated audience.
+export const technologies: { name: string; what: string }[] = [
+  { name: "Python", what: "The programming language used throughout the book" },
+  { name: "Streamlit", what: "Turns Python scripts into the companion app's web screens" },
+  { name: "FAISS", what: "Searches millions of passages by meaning, fast" },
+  { name: "BM25", what: "Classic keyword search — finds exact words and codes" },
+  { name: "Sentence Transformers", what: "Converts report text into 'meaning vectors' for semantic search" },
+  { name: "PyMuPDF", what: "Reads text out of PDF reports" },
+  { name: "OCR", what: "Reads text from scanned (image) report pages" },
+  { name: "Hybrid Retrieval", what: "Combines keyword and meaning-based search for better results" },
+  { name: "Ollama (local LLMs)", what: "Runs the answer-generating AI model on your own computer" },
+  { name: "GitHub Actions", what: "Automatically tests the code on every update" },
+  { name: "Docker", what: "Packages the app so it runs the same on any computer" },
+  { name: "pytest", what: "Automatically checks that the code still works correctly" },
 ];
 
 // ============================================================
@@ -133,6 +135,12 @@ export interface Chapter {
 
 const gh = (folder: string) => `${site.repoUrl}/tree/main/${folder}`;
 export const chapterUrl = (c: Chapter) => gh(c.folder);
+
+// Deep link straight into this chapter's text on the live book site
+// (djimrastephane.github.io/ddr-rag-book/chapters/chapter_NN.html), instead
+// of just the book's homepage.
+export const bookChapterUrl = (c: Chapter) =>
+  `${site.liveBookUrl}chapters/chapter_${String(c.num).padStart(2, "0")}.html`;
 
 export const chapters: Chapter[] = [
   {

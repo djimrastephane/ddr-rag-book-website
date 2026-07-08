@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import FeatureCard from "../components/FeatureCard.astro";
 import CTAButton from "../components/CTAButton.astro";
+import ScreenshotCard from "../components/ScreenshotCard.astro";
 import { site, pipeline, builds, whyItMatters, technologies } from "../data/site";
 ---
 
@@ -79,6 +80,23 @@ import { site, pipeline, builds, whyItMatters, technologies } from "../data/site
     <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {builds.map((b) => <FeatureCard title={b.title} text={b.text} />)}
     </div>
+
+    <!-- Real screenshots of the companion app, so readers see proof, not just a promise -->
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <ScreenshotCard
+        src="/screenshots/app_answer.jpg"
+        title="A real cited answer"
+        caption="Generated locally by qwen2.5:7b-instruct from the sample DDR archive, with the source report cited."
+      />
+      <ScreenshotCard
+        src="/screenshots/app_transparency.jpg"
+        title="The evidence behind it"
+        caption="Every matched report shown with its score, date, and excerpt — evidence first, answer second."
+      />
+    </div>
+    <p class="mt-4 text-center text-sm text-slate-400">
+      <a href="/demo/" class="text-accent hover:underline">See the full demo →</a>
+    </p>
   </section>
 
   <!-- ================= WHY IT MATTERS ================= -->
@@ -97,11 +115,20 @@ import { site, pipeline, builds, whyItMatters, technologies } from "../data/site
 
   <!-- ================= BUILT WITH ================= -->
   <section class="mx-auto max-w-6xl px-4 py-16">
-    <SectionHeader kicker="built with" heading="Open-source, local-first stack" />
+    <SectionHeader
+      kicker="built with"
+      heading="Open-source, local-first stack"
+      lead="Hover any item for a plain-English explanation — no prior experience with these tools is assumed."
+    />
     <div class="mt-6 flex flex-wrap gap-2">
       {
         technologies.map((t) => (
-          <span class="rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-slate-300">{t}</span>
+          <span
+            title={t.what}
+            class="cursor-help rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-slate-300"
+          >
+            {t.name}
+          </span>
         ))
       }
     </div>
