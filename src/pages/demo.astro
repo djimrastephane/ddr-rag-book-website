@@ -21,10 +21,26 @@ import { site } from "../data/site";
     </div>
 
     <div class="mt-12 grid gap-6 sm:grid-cols-2">
-      <ScreenshotCard title="Ask a question" caption="Natural-language questions over the whole report archive." />
-      <ScreenshotCard title="Hybrid retrieval results" caption="BM25 and semantic hits fused and ranked, each with report and date." />
-      <ScreenshotCard title="Evidence-backed answer" caption="Generated answer with inline citations back to source passages." />
-      <ScreenshotCard title="Source passage view" caption="Click any citation to read the original report text it came from." />
+      <ScreenshotCard
+        src="/screenshots/app_landing.jpg"
+        title="Ask a question"
+        caption="Pick a sample engineering question or type your own, choose top-k, and optionally generate an answer with a local Ollama model."
+      />
+      <ScreenshotCard
+        src="/screenshots/app_answer.jpg"
+        title="Evidence-backed answer"
+        caption="A real answer generated locally by qwen2.5:7b-instruct, with the source report cited — and an honest note when the evidence doesn't fully answer the question."
+      />
+      <ScreenshotCard
+        src="/screenshots/app_transparency.jpg"
+        title="Retrieved evidence"
+        caption="Every matched report shown with its score, date, excerpt, and why it was retrieved — evidence first, answer second."
+      />
+      <ScreenshotCard
+        src="/screenshots/app_stuck_pipe.jpg"
+        title="The transparency panel"
+        caption="Everything behind the answer: ranked reports, evidence snippets, and the exact prompt sent to the local model."
+      />
     </div>
 
     <div class="mt-12 max-w-3xl">
