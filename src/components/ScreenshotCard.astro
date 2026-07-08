@@ -1,0 +1,27 @@
+---
+// Screenshot card with a built-in placeholder.
+// EDIT: to use a real screenshot, drop the image in public/screenshots/
+// and pass src="/screenshots/your-file.png".
+interface Props {
+  title: string;
+  caption: string;
+  src?: string;
+}
+const { title, caption, src } = Astro.props;
+---
+
+<figure class="overflow-hidden rounded-lg border border-line bg-panel">
+  {
+    src ? (
+      <img src={src} alt={title} class="w-full" loading="lazy" />
+    ) : (
+      <div class="flex aspect-video items-center justify-center border-b border-dashed border-line bg-ink">
+        <span class="font-mono text-xs text-slate-500">[ screenshot placeholder — {title} ]</span>
+      </div>
+    )
+  }
+  <figcaption class="p-4">
+    <p class="text-sm font-semibold text-white">{title}</p>
+    <p class="mt-1 text-xs text-slate-400">{caption}</p>
+  </figcaption>
+</figure>

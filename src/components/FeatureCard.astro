@@ -1,0 +1,13 @@
+---
+// Card used for "what you'll build", "why it matters", etc.
+interface Props {
+  title: string;
+  text: string;
+}
+const { title, text } = Astro.props;
+---
+
+<div class="card-lift rounded-lg border border-line bg-panel p-5 hover:border-accent/50">
+  <h3 class="font-semibold text-white">{title}</h3>
+  <p class="mt-2 text-sm leading-relaxed text-slate-400">{text}</p>
+</div>

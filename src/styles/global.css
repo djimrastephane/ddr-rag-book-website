@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Dark mode is class-based: <html class="dark">. Toggled in Base.astro. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   Design tokens — light theme is the default (clean, airy),
+   .dark switches to the technical dark theme.
+   EDIT: change the two palettes below to retheme the site.
+   The slate/white utilities used across pages are remapped to
+   these variables so every page follows the active theme.
+   ============================================================ */
+:root {
+  --bg: #f6f8fb;          /* page background */
+  --panel-c: #ffffff;     /* card background */
+  --line-c: #e2e8f0;      /* borders */
+  --accent-c: #0d9488;    /* teal accent */
+  --accent-hover: #0f766e;
+  --t-heading: #0f172a;   /* headings ("white" in dark mode) */
+  --t-strong: #334155;
+  --t-mid: #52657d;
+  --t-dim: #7e8da1;
+  --t-code: #0f766e;      /* inline code in blog posts */
+}
+
+.dark {
+  --bg: #0b1118;
+  --panel-c: #111a24;
+  --line-c: #1f2d3d;
+  --accent-c: #2dd4bf;
+  --accent-hover: #5eead4;
+  --t-heading: #ffffff;
+  --t-strong: #cbd5e1;
+  --t-mid: #94a3b8;
+  --t-dim: #64748b;
+  --t-code: #99f6e4;
+}
+
+@theme inline {
+  --color-ink: var(--bg);
+  --color-panel: var(--panel-c);
+  --color-line: var(--line-c);
+  --color-accent: var(--accent-c);
+  --color-accent-dim: var(--accent-hover);
+  /* Remap the palette utilities used throughout the pages */
+  --color-white: var(--t-heading);
+  --color-slate-200: var(--t-strong);
+  --color-slate-300: var(--t-strong);
+  --color-slate-400: var(--t-mid);
+  --color-slate-500: var(--t-dim);
+  --color-amber-200: var(--t-code);
+  --color-amber-400: var(--accent-hover);
+  --font-mono: "SFMono-Regular", ui-monospace, "JetBrains Mono", Menlo, monospace;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--t-strong);
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+::selection {
+  background: var(--accent-c);
+  color: #fff;
+}
+
+/* ============================================================
+   Subtle animations
+   ============================================================ */
+
+/* Scroll reveal: JS in Base.astro adds .reveal to sections, then
+   .reveal-in when they enter the viewport. No JS = fully visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entrance on page load */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.animate-rise { animation: rise 0.7s ease both; }
+.animate-rise-delay { animation: rise 0.7s ease 0.15s both; }
+
+/* Card hover lift (used by cards via the .card-lift class) */
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.08);
+}
+.dark .card-lift:hover {
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .animate-rise, .animate-rise-delay, .card-lift {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

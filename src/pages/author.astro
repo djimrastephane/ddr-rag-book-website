@@ -1,0 +1,40 @@
+---
+// About the Author. EDIT: bio text below and photo (public/author.jpg).
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CTAButton from "../components/CTAButton.astro";
+import { site } from "../data/site";
+---
+
+<Base title="About the Author" description={`About ${site.authorName}: 17+ years in completions and well intervention, MSc Data Science, practical industrial AI.`}>
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader kicker="the author" heading={site.authorName} />
+    <div class="mt-8 grid gap-10 md:grid-cols-[240px_1fr]">
+      <!-- EDIT: replace with <img src="/author.jpg" ...> after adding public/author.jpg -->
+      <div class="flex aspect-square items-center justify-center rounded-lg border border-dashed border-line bg-panel">
+        <span class="font-mono text-xs text-slate-500">[ author photo ]</span>
+      </div>
+      <div class="max-w-2xl space-y-4 text-slate-300">
+        <p>
+          I've spent <strong class="text-white">17+ years in completions and well intervention</strong>,
+          working the operational side of oil and gas — the side that writes and reads Daily Drilling
+          Reports every single day.
+        </p>
+        <p>
+          Along the way I completed an <strong class="text-white">MSc in Data Science</strong> and started
+          building the tools I wished existed on location: systems that answer engineering questions from
+          our own report archives, with evidence attached, running locally on confidential data.
+        </p>
+        <p>
+          This book and its companion project are the result — a bridge between field engineering and data
+          science, written for engineers with zero programming background who want to build practical,
+          traceable industrial AI. No hype, no black boxes.
+        </p>
+      </div>
+    </div>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <CTAButton href="/contact/">Get in touch</CTAButton>
+      <CTAButton href={`https://github.com/${site.repoOwner}`} variant="ghost">GitHub profile</CTAButton>
+    </div>
+  </section>
+</Base>

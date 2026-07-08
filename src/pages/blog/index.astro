@@ -1,0 +1,33 @@
+---
+// Blog index — lists all Markdown posts in this folder, newest first.
+// To add a post: create src/pages/blog/my-post.md with the same frontmatter
+// shape as the existing posts. It appears here automatically.
+import Base from "../../layouts/Base.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+
+const posts = Object.values(
+  import.meta.glob("./*.md", { eager: true })
+) as any[];
+posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+---
+
+<Base title="Blog" description="Notes on industrial RAG, retrieval, and building AI systems for drilling data.">
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader
+      kicker="blog"
+      heading="Industrial AI, from the field"
+      lead="Notes on retrieval, traceability, and lessons learned building RAG systems for drilling reports."
+    />
+    <div class="mt-8 grid max-w-3xl gap-4">
+      {
+        posts.map((post) => (
+          <a href={post.url} class="card-lift rounded-lg border border-line bg-panel p-5 hover:border-accent/50">
+            <p class="font-mono text-xs text-slate-500">{post.frontmatter.date} · {post.frontmatter.readingTime}</p>
+            <h2 class="mt-1 font-semibold text-white">{post.frontmatter.title}</h2>
+            <p class="mt-2 text-sm text-slate-400">{post.frontmatter.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

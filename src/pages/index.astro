@@ -1,0 +1,126 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import CTAButton from "../components/CTAButton.astro";
+import { site, pipeline, builds, whyItMatters, technologies } from "../data/site";
+---
+
+<Base>
+  <!-- ================= HERO ================= -->
+  <section class="border-b border-line">
+    <div class="mx-auto max-w-6xl px-4 py-20 md:py-28">
+      <p class="animate-rise font-mono text-xs font-semibold uppercase tracking-widest text-accent">
+        {site.tagline} — the official project site
+      </p>
+      <h1 class="animate-rise mt-4 max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl">
+        Build Industrial AI Systems from Daily Drilling Reports
+      </h1>
+      <p class="animate-rise-delay mt-5 max-w-2xl text-lg text-slate-300">{site.description}</p>
+      <div class="animate-rise-delay mt-8 flex flex-wrap gap-3">
+        <CTAButton href={site.liveBookUrl}>Read the Book</CTAButton>
+        <CTAButton href={site.repoUrl} variant="ghost">View GitHub</CTAButton>
+        <CTAButton href="/demo/" variant="ghost">See Demo</CTAButton>
+      </div>
+      <!-- Subtle document/terminal visual -->
+      <div class="mt-12 max-w-2xl rounded-lg border border-line bg-panel p-4 font-mono text-xs leading-relaxed text-slate-400">
+        <p class="text-slate-500"># DDR 2019-05-14 — raw report text</p>
+        <p>06:00–09:30 POOH w/ BHA #4. Tight hole @ 7,842 ft, worked pipe...</p>
+        <p class="mt-2 text-slate-500"># your question</p>
+        <p class="text-white">&gt; When did we last see stuck pipe symptoms in this section?</p>
+        <p class="mt-2 text-slate-500"># traceable answer</p>
+        <p><span class="text-accent">Tight hole with overpull was reported at 7,842 ft</span> [DDR 2019-05-14, ops summary, lines 12–14]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEM ================= -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader
+      kicker="the problem"
+      heading="Years of operational knowledge, trapped in PDFs"
+      lead="Every well generates hundreds of Daily Drilling Reports: lessons on stuck pipe, losses, NPT, and what actually worked. But they live in scanned files, inconsistent formats, and unstructured text — and keyword search fails because crews describe the same event as 'stuck pipe' one day and 'tight hole' or 'high torque' the next. Same event, invisible to search."
+    />
+  </section>
+
+  <!-- ================= SOLUTION ================= -->
+  <section class="border-y border-line bg-panel/40">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <SectionHeader
+        kicker="the solution"
+        heading="A complete pipeline, built one chapter at a time"
+        lead="The book walks you through every stage — no prior programming experience assumed, everything running locally on your laptop."
+      />
+      <ol class="mt-8 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          pipeline.map((step, i) => (
+            <li class="flex items-center gap-3 rounded-md border border-line bg-ink px-4 py-2.5 text-sm text-slate-300">
+              <span class="font-mono text-xs text-accent">{String(i + 1).padStart(2, "0")}</span>
+              {step}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= WHAT YOU'LL BUILD ================= -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader kicker="what you'll build" heading="Working systems, not toy examples" />
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {builds.map((b) => <FeatureCard title={b.title} text={b.text} />)}
+    </div>
+  </section>
+
+  <!-- ================= WHY IT MATTERS ================= -->
+  <section class="border-y border-line bg-panel/40">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <SectionHeader
+        kicker="why it matters"
+        heading="Traceable answers engineers can trust"
+        lead="In drilling operations, an unsourced answer is a liability. This book treats citations, local execution, and engineering review as core requirements — not afterthoughts."
+      />
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {whyItMatters.map((w) => <FeatureCard title={w.title} text={w.text} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BUILT WITH ================= -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader kicker="built with" heading="Open-source, local-first stack" />
+    <div class="mt-6 flex flex-wrap gap-2">
+      {
+        technologies.map((t) => (
+          <span class="rounded-full border border-line bg-panel px-3 py-1 font-mono text-xs text-slate-300">{t}</span>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ================= AUTHOR ================= -->
+  <section class="border-y border-line bg-panel/40">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <SectionHeader
+        kicker="the author"
+        heading="Written from the rig floor and the notebook"
+        lead="17+ years in completions and well intervention, an MSc in Data Science, and a focus on practical industrial AI — bridging the gap between what engineers need and what data science can deliver."
+      />
+      <div class="mt-6">
+        <CTAButton href="/author/" variant="ghost">About the author</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="mx-auto max-w-6xl px-4 py-20 text-center">
+    <h2 class="text-3xl font-bold text-white">Start building traceable AI for drilling reports.</h2>
+    <p class="mx-auto mt-3 max-w-xl text-slate-400">
+      The book is free to read online, the code is MIT-licensed, and everything runs on your laptop.
+    </p>
+    <div class="mt-8 flex justify-center gap-3">
+      <CTAButton href={site.liveBookUrl}>Read the Book</CTAButton>
+      <CTAButton href={site.repoUrl} variant="ghost">Star on GitHub</CTAButton>
+    </div>
+  </section>
+</Base>

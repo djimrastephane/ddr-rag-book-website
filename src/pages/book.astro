@@ -1,0 +1,62 @@
+---
+// About the Book + Table of Contents (chapter cards).
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ChapterCard from "../components/ChapterCard.astro";
+import CTAButton from "../components/CTAButton.astro";
+import { site, chapters } from "../data/site";
+
+const partI = chapters.filter((c) => c.num <= 5);
+const partII = chapters.filter((c) => c.num > 5);
+---
+
+<Base title="The Book" description="About Building Industrial RAG Systems from Daily Drilling Reports, and its full table of contents.">
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader
+      kicker="about the book"
+      heading={site.title}
+      lead="A hands-on guide for well, drilling, completions, and production engineers who want to turn Daily Drilling Report archives into searchable, traceable AI systems — starting from zero programming experience."
+    />
+    <div class="mt-8 grid max-w-3xl gap-4 text-slate-300">
+      <p>
+        The book uses real DDRs from the <strong class="text-white">Utah FORGE</strong> geothermal research
+        well (a U.S. Department of Energy project), so every example deals with genuine operational text:
+        oilfield shorthand, scanned pages, inconsistent formats, and terminology drift.
+      </p>
+      <p>
+        You build one working system per chapter — from extracting text out of a single PDF to a full hybrid
+        retrieval + local LLM assistant with engineering-grade citations. No GPU, no cloud account, no paid
+        APIs required (8 GB RAM minimum, 16 GB recommended).
+      </p>
+      <p class="text-sm text-slate-400">
+        The book text is licensed CC BY 4.0 and the code is MIT — free to read, run, and adapt.
+      </p>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <CTAButton href={site.liveBookUrl}>Read the book online</CTAButton>
+      <CTAButton href="/project/" variant="ghost">Companion project</CTAButton>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-8">
+    <SectionHeader
+      kicker="table of contents · part I"
+      heading="Foundations: from PDF to your first RAG system"
+      lead="Chapters 1–5, about two hours of hands-on work (plus a 30–45 min Part 0 setup workshop)."
+    />
+    <div class="mt-8 grid gap-4">
+      {partI.map((c) => <ChapterCard chapter={c} />)}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-8">
+    <SectionHeader
+      kicker="table of contents · part II"
+      heading="Production concerns: OCR, scale, hybrid retrieval, traceability"
+      lead="Chapters 6–12 harden the system for real archives and real engineering review."
+    />
+    <div class="mt-8 grid gap-4">
+      {partII.map((c) => <ChapterCard chapter={c} />)}
+    </div>
+  </section>
+</Base>

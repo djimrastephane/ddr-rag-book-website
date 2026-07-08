@@ -1,0 +1,141 @@
+---
+// Companion Project page: repo overview, architecture, install, releases, roadmap.
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import CTAButton from "../components/CTAButton.astro";
+import ScreenshotCard from "../components/ScreenshotCard.astro";
+import { site, technologies, roadmap } from "../data/site";
+---
+
+<Base title="Companion Project" description="The open-source companion repository: architecture, installation, releases, and roadmap.">
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader
+      kicker="companion project"
+      heading="ddr-rag-book on GitHub"
+      lead="The repository is the implementation; this site and the book are the guide. Every chapter's code, the test suite, the sample DDR archive, and the Streamlit companion app live there — MIT licensed."
+    />
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <CTAButton href={site.repoUrl}>★ Star the repository</CTAButton>
+      <CTAButton href={`${site.repoUrl}/issues`} variant="ghost">Issues</CTAButton>
+      <CTAButton href={`${site.repoUrl}/discussions`} variant="ghost">Discussions</CTAButton>
+    </div>
+    <!-- Live badges straight from GitHub (CI/CD status) -->
+    <div class="mt-6 flex flex-wrap gap-2">
+      <img src={`https://img.shields.io/github/v/release/${site.repoOwner}/${site.repoName}`} alt="Latest release" height="20" />
+      <img src={`https://img.shields.io/github/actions/workflow/status/${site.repoOwner}/${site.repoName}/tests.yml?label=tests`} alt="Tests status" height="20" />
+      <img src={`https://img.shields.io/github/stars/${site.repoOwner}/${site.repoName}`} alt="GitHub stars" height="20" />
+      <img src={`https://img.shields.io/github/license/${site.repoOwner}/${site.repoName}`} alt="License" height="20" />
+    </div>
+  </section>
+
+  <section class="border-y border-line bg-panel/40">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <SectionHeader
+        kicker="why it exists"
+        heading="Reading about RAG isn't building RAG"
+        lead="The repository exists so every concept in the book is runnable, testable, and inspectable. Automated tests run on Linux, Windows, and macOS for every chapter, so the code you clone actually works."
+      />
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <FeatureCard title="Real data" text="10 sample Utah FORGE DDRs included; the full 76-report archive is reproducible with build_full_archive.py." />
+        <FeatureCard title="Tested everywhere" text="pytest suite covering all chapters, run in CI on three operating systems via GitHub Actions." />
+        <FeatureCard title="Local-first" text="FAISS, sentence-transformers, and Ollama — no cloud, no API keys, no data leaving your machine." />
+        <FeatureCard title="Companion app" text="A Streamlit app over the full archive with hybrid retrieval, citations, and optional LLM answers." />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader kicker="architecture" heading="Project structure" />
+    <pre class="mt-6 overflow-x-auto rounded-lg border border-line bg-panel p-5 font-mono text-sm leading-relaxed text-slate-300"><code>ddr-rag-book/
+├── book/
+│   ├── code/            # chapter_01 … chapter_12 — one folder per chapter
+│   ├── notebooks/       # Jupyter versions of chapter code
+│   ├── app/             # Streamlit companion app
+│   ├── appendix/        # reference material
+│   └── tests/           # pytest suite for all chapters
+├── datasets/
+│   └── sample_ddrs/     # 10 real Utah FORGE daily drilling reports
+└── .github/workflows/   # CI: tests on Linux / Windows / macOS + Pages publish</code></pre>
+  </section>
+
+  <section class="border-y border-line bg-panel/40">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <SectionHeader kicker="installation" heading="Up and running in three commands" />
+      <pre class="mt-6 overflow-x-auto rounded-lg border border-line bg-ink p-5 font-mono text-sm leading-relaxed text-slate-300"><code><span class="text-slate-500"># clone and install</span>
+git clone {site.repoUrl}.git
+pip install -r book/requirements.txt
+python book/code/setup_check.py
+
+<span class="text-slate-500"># optional: companion app with local LLM answers</span>
+ollama pull qwen2.5:7b-instruct
+streamlit run book/app/streamlit_app.py</code></pre>
+      <p class="mt-4 text-sm text-slate-400">
+        Requirements: 8 GB RAM (16 GB recommended), ~5 GB disk, any modern CPU. No GPU needed.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader kicker="screenshots" heading="The companion app" />
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      <ScreenshotCard title="Hybrid search results" caption="BM25 + semantic retrieval over the DDR archive with per-result provenance." />
+      <ScreenshotCard title="Cited answer view" caption="Generated answer with report, date, and passage citations for engineering review." />
+    </div>
+  </section>
+
+  <!-- Release timeline: fetched live from the GitHub API in the browser. -->
+  <section class="border-y border-line bg-panel/40">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <SectionHeader kicker="releases" heading="Release timeline" lead="Loaded live from GitHub." />
+      <ol id="releases" class="mt-8 grid gap-4">
+        <li class="rounded-lg border border-line bg-panel p-5 text-sm text-slate-400">
+          Loading releases… If this doesn't load, view them directly on
+          <a href={`${site.repoUrl}/releases`} class="text-accent hover:underline">GitHub ↗</a>.
+        </li>
+      </ol>
+      <script define:vars={{ owner: site.repoOwner, repo: site.repoName }}>
+        fetch(`https://api.github.com/repos/${owner}/${repo}/releases?per_page=10`)
+          .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+          .then((releases) => {
+            const el = document.getElementById("releases");
+            if (!releases.length) return;
+            el.innerHTML = releases
+              .map(
+                (rel) => `
+              <li class="rounded-lg border border-line bg-panel p-5">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <span class="font-mono font-semibold text-accent">${rel.tag_name}</span>
+                  <span class="font-mono text-xs text-slate-500">${new Date(rel.published_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+                </div>
+                <p class="mt-2 text-sm text-slate-300">${(rel.name || "").replace(/</g, "&lt;")}</p>
+                <p class="mt-1 line-clamp-3 whitespace-pre-line text-sm text-slate-400">${(rel.body || "").slice(0, 300).replace(/</g, "&lt;")}</p>
+                <a href="${rel.html_url}" class="mt-2 inline-block text-sm text-accent hover:underline">Release notes ↗</a>
+              </li>`
+              )
+              .join("");
+          })
+          .catch(() => {}); /* fallback text with GitHub link stays visible */
+      </script>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader kicker="roadmap" heading="Where the project is heading" />
+    <!-- EDIT: roadmap items in src/data/site.ts -->
+    <ul class="mt-6 grid max-w-2xl gap-2">
+      {
+        roadmap.map((r) => (
+          <li class="flex items-center gap-3 rounded-md border border-line bg-panel px-4 py-2.5 text-sm text-slate-300">
+            <span class="text-accent">→</span> {r}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-10 rounded-lg border border-accent/30 bg-panel p-6 text-center">
+      <p class="text-lg font-semibold text-white">If this project is useful to you, star it on GitHub.</p>
+      <p class="mt-1 text-sm text-slate-400">Stars help other drilling engineers find it.</p>
+      <div class="mt-4"><CTAButton href={site.repoUrl}>★ Star {site.repoName}</CTAButton></div>
+    </div>
+  </section>
+</Base>

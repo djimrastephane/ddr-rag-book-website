@@ -1,0 +1,100 @@
+---
+// Book ↔ Repository map + Interactive Learning guide per chapter.
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { site, chapters, chapterUrl } from "../data/site";
+---
+
+<Base title="Chapters & Code" description="How every book chapter maps to the repository, with learning objectives, skills, and exercises.">
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader
+      kicker="book ↔ repository"
+      heading="Every chapter has runnable code"
+      lead="The book explains the concepts; the repository holds the implementation. This map shows exactly where to find the code for each chapter."
+    />
+    <div class="mt-8 overflow-x-auto rounded-lg border border-line">
+      <table class="w-full min-w-[560px] text-left text-sm">
+        <thead class="border-b border-line bg-panel font-mono text-xs uppercase tracking-wide text-slate-400">
+          <tr>
+            <th class="px-4 py-3">Chapter</th>
+            <th class="px-4 py-3">Title</th>
+            <th class="px-4 py-3">Repository folder</th>
+            <th class="px-4 py-3">Key script</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            chapters.map((c) => (
+              <tr class="border-b border-line/50 last:border-0 hover:bg-panel/60">
+                <td class="px-4 py-3 font-mono text-accent">{String(c.num).padStart(2, "0")}</td>
+                <td class="px-4 py-3 text-slate-200">
+                  <a href={`#chapter-${c.num}`} class="hover:text-accent">{c.title}</a>
+                </td>
+                <td class="px-4 py-3">
+                  <a href={chapterUrl(c)} class="font-mono text-xs text-accent hover:underline">{c.folder} ↗</a>
+                </td>
+                <td class="px-4 py-3 font-mono text-xs text-slate-400">{c.keyScript}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4 text-sm text-slate-400">
+      Notebooks live in <a href={`${site.repoUrl}/tree/main/book/notebooks`} class="font-mono text-accent hover:underline">book/notebooks ↗</a>,
+      the companion app in <a href={`${site.repoUrl}/tree/main/book/app`} class="font-mono text-accent hover:underline">book/app ↗</a>,
+      and sample data in <a href={`${site.repoUrl}/tree/main/datasets/sample_ddrs`} class="font-mono text-accent hover:underline">datasets/sample_ddrs ↗</a>.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <SectionHeader
+      kicker="interactive learning"
+      heading="Chapter-by-chapter learning guide"
+      lead="Objectives, skills, time estimates, and suggested exercises for every chapter."
+    />
+    <div class="mt-8 grid gap-6">
+      {
+        chapters.map((c) => (
+          <article id={`chapter-${c.num}`} class="scroll-mt-24 rounded-lg border border-line bg-panel p-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="text-lg font-semibold text-white">
+                <span class="font-mono text-accent">{String(c.num).padStart(2, "0")}</span> · {c.title}
+              </h3>
+              <p class="font-mono text-xs text-slate-500">
+                read ~{c.readingTime} · code ~{c.codingTime}
+              </p>
+            </div>
+            <p class="mt-2 text-sm text-slate-400">{c.summary}</p>
+            <div class="mt-4 grid gap-4 md:grid-cols-3">
+              <div>
+                <p class="font-mono text-xs uppercase tracking-wide text-slate-500">Objectives</p>
+                <ul class="mt-2 list-inside list-disc space-y-1 text-sm text-slate-300">
+                  {c.objectives.map((o) => <li>{o}</li>)}
+                </ul>
+              </div>
+              <div>
+                <p class="font-mono text-xs uppercase tracking-wide text-slate-500">Skills gained</p>
+                <ul class="mt-2 list-inside list-disc space-y-1 text-sm text-slate-300">
+                  {c.skills.map((s) => <li>{s}</li>)}
+                </ul>
+                <p class="mt-3 font-mono text-xs uppercase tracking-wide text-slate-500">Technologies</p>
+                <p class="mt-1 font-mono text-xs text-slate-400">{c.tech.join(" · ")}</p>
+              </div>
+              <div>
+                <p class="font-mono text-xs uppercase tracking-wide text-slate-500">Suggested exercises</p>
+                <ul class="mt-2 list-inside list-disc space-y-1 text-sm text-slate-300">
+                  {c.exercises.map((e) => <li>{e}</li>)}
+                </ul>
+              </div>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-4 border-t border-line pt-4 text-sm">
+              <a href={chapterUrl(c)} class="text-accent hover:underline">View code on GitHub ↗</a>
+              <a href={`${site.repoUrl}/tree/main/book/notebooks`} class="text-slate-400 hover:text-accent">Notebooks ↗</a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Base>
