@@ -67,7 +67,6 @@ export const pipelineFlow = [
 export const metrics = [
   "17+ years operational engineering",
   "12 chapters",
-  "44 automated tests",
   "Streamlit companion app",
   "MIT licensed",
   "Runs 100% locally",
