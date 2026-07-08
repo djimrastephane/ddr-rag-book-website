@@ -3,6 +3,7 @@
 // Pages pass `title` and `description`; everything else is automatic.
 import "../styles/global.css";
 import { site, nav } from "../data/site";
+import Logo from "../components/Logo.astro";
 
 interface Props {
   title?: string;
@@ -54,8 +55,9 @@ const current = Astro.url.pathname;
   <body class="min-h-screen font-sans antialiased">
     <header class="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur">
       <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <a href="/" class="flex items-baseline gap-2 font-mono text-sm font-bold tracking-tight text-white">
-          <span class="text-accent">▙</span> {site.name}
+        <a href="/" class="flex items-center gap-2 font-mono text-sm font-bold tracking-tight text-white">
+          <Logo class="text-accent" />
+          {site.name}
         </a>
         <div class="flex items-center gap-2 md:order-last">
           <!-- Light/dark toggle -->
@@ -104,7 +106,10 @@ const current = Astro.url.pathname;
     <footer class="mt-20 border-t border-line">
       <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
-          <p class="font-mono text-sm font-bold text-white"><span class="text-accent">▙</span> {site.name}</p>
+          <p class="flex items-center gap-2 font-mono text-sm font-bold text-white">
+            <Logo class="text-accent" />
+            {site.name}
+          </p>
           <p class="mt-2 text-sm text-slate-400">{site.tagline}</p>
           <p class="mt-2 text-xs text-slate-500">Code: MIT · Book text: CC BY 4.0</p>
         </div>
