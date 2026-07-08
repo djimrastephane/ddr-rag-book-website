@@ -9,7 +9,9 @@ import { pipelineFlow } from "../data/site";
     pipelineFlow.map((step, i) => {
       const isLast = i === pipelineFlow.length - 1;
       return (
-        <>
+        // Step + arrow wrapped together so a line-wrap never strands the
+        // arrow alone at the start of the next row.
+        <div class="flex items-center gap-2">
           <div
             class:list={[
               "rounded-md border px-3 py-2 text-center font-mono text-xs leading-tight",
@@ -21,7 +23,7 @@ import { pipelineFlow } from "../data/site";
             {step}
           </div>
           {!isLast && <span class="text-accent" aria-hidden="true">→</span>}
-        </>
+        </div>
       );
     })
   }
