@@ -77,28 +77,11 @@ streamlit run book/app/streamlit_app.py</code></pre>
   </section>
 
   <section class="mx-auto max-w-6xl px-4 py-16">
-    <SectionHeader
-      kicker="beyond the book"
-      heading="DDR Intelligence: the full pipeline app"
-      lead="Screenshots below are from DDR Intelligence, the author's full-archive application built on the techniques this book teaches. The simpler book companion app you build yourself lives in this repository under book/app."
-    />
+    <SectionHeader kicker="screenshots" heading="The companion app" />
     <div class="mt-8 grid gap-4 sm:grid-cols-2">
-      <ScreenshotCard
-        src="/screenshots/operational_graph.png"
-        title="Operational Graph"
-        caption="Operations, events, and equipment from the reports connected into an explorable graph."
-      />
-      <ScreenshotCard
-        src="/screenshots/field_analysis.png"
-        title="Field Analysis"
-        caption="Field-level analysis assembled from the full DDR archive."
-      />
+      <ScreenshotCard title="Hybrid search results" caption="BM25 + semantic retrieval over the DDR archive with per-result provenance." />
+      <ScreenshotCard title="Cited answer view" caption="Generated answer with report, date, and passage citations for engineering review." />
     </div>
-    <p class="mt-4 text-sm text-slate-400">
-      Explore the full pipeline at
-      <a href={site.pipelineRepoUrl} class="text-accent hover:underline">DDR_UTAH_FORGE ↗</a>
-      — more screenshots on the <a href="/demo/" class="text-accent hover:underline">demo page</a>.
-    </p>
   </section>
 
   <!-- Release timeline: fetched live from the GitHub API in the browser. -->
