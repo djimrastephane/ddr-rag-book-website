@@ -20,13 +20,19 @@ import { site, technologies, roadmap } from "../data/site";
       <CTAButton href={`${site.repoUrl}/issues`} variant="ghost">Issues</CTAButton>
       <CTAButton href={`${site.repoUrl}/discussions`} variant="ghost">Discussions</CTAButton>
     </div>
-    <!-- Live badges straight from GitHub (CI/CD status) -->
+    <!-- Live badges straight from GitHub (CI/CD status).
+         EDIT: workflow filenames below must match .github/workflows/*.yml exactly,
+         or shields.io renders "repo or workflow not found". No license badge here —
+         GitHub can't assign a single SPDX license to this repo's dual MIT/CC-BY-4.0
+         terms, so it always shows as "Other"; license is stated as plain text instead. -->
     <div class="mt-6 flex flex-wrap gap-2">
       <img src={`https://img.shields.io/github/v/release/${site.repoOwner}/${site.repoName}`} alt="Latest release" height="20" />
-      <img src={`https://img.shields.io/github/actions/workflow/status/${site.repoOwner}/${site.repoName}/tests.yml?label=tests`} alt="Tests status" height="20" />
+      <img src={`https://img.shields.io/github/actions/workflow/status/${site.repoOwner}/${site.repoName}/tests-linux.yml?label=tests%20(linux)`} alt="Linux tests status" height="20" />
+      <img src={`https://img.shields.io/github/actions/workflow/status/${site.repoOwner}/${site.repoName}/tests-macos.yml?label=tests%20(macos)`} alt="macOS tests status" height="20" />
+      <img src={`https://img.shields.io/github/actions/workflow/status/${site.repoOwner}/${site.repoName}/tests-windows.yml?label=tests%20(windows)`} alt="Windows tests status" height="20" />
       <img src={`https://img.shields.io/github/stars/${site.repoOwner}/${site.repoName}`} alt="GitHub stars" height="20" />
-      <img src={`https://img.shields.io/github/license/${site.repoOwner}/${site.repoName}`} alt="License" height="20" />
     </div>
+    <p class="mt-2 text-xs text-slate-500">Code: MIT · Book text: CC BY 4.0</p>
   </section>
 
   <section class="border-y border-line bg-panel/40">
