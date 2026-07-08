@@ -9,7 +9,8 @@ import { site, pipeline, builds, whyItMatters, technologies } from "../data/site
 <Base>
   <!-- ================= HERO ================= -->
   <section class="border-b border-line">
-    <div class="mx-auto max-w-6xl px-4 py-20 md:py-28">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-[1fr_300px] md:py-24">
+      <div>
       <p class="animate-rise font-mono text-xs font-semibold uppercase tracking-widest text-accent">
         {site.tagline} — the official project site
       </p>
@@ -31,6 +32,14 @@ import { site, pipeline, builds, whyItMatters, technologies } from "../data/site
         <p class="mt-2 text-slate-500"># traceable answer</p>
         <p><span class="text-accent">Tight hole with overpull was reported at 7,842 ft</span> [DDR 2019-05-14, ops summary, lines 12–14]</p>
       </div>
+      </div>
+      <a href="/book/" class="animate-rise-delay mx-auto w-56 md:w-full" aria-label="About the book">
+        <img
+          src="/book-cover.jpg"
+          alt="Book cover: Building Industrial RAG Systems from Daily Drilling Reports"
+          class="card-lift w-full rounded-lg border border-line shadow-xl"
+        />
+      </a>
     </div>
   </section>
 

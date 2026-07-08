@@ -28,9 +28,10 @@ const current = Astro.url.pathname;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <!-- EDIT: add public/og.png (1200x630) and uncomment:
-    <meta property="og:image" content={new URL("/og.png", Astro.site)} /> -->
-    <meta name="twitter:card" content="summary" />
+    <!-- EDIT: for an ideal share card, add a 1200x630 public/og.png and point this at it -->
+    <meta property="og:image" content={new URL("/book-cover.jpg", Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={new URL("/book-cover.jpg", Astro.site)} />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <!-- Theme init: runs before paint to avoid a flash. Light is the default. -->
