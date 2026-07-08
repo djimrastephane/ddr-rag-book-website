@@ -17,7 +17,7 @@ export const site = {
   pipelineRepoUrl: "https://github.com/djimrastephane/DDR_UTAH_FORGE",
   // EDIT: contact details
   email: "stephane.djimra@gmail.com",
-  linkedin: "", // e.g. "https://www.linkedin.com/in/your-handle"
+  linkedin: "https://www.linkedin.com/in/djimra-stephane-soulanoudjingar-3078a055",
   authorName: "Stephane Djimra",
 };
 
