@@ -13,14 +13,33 @@ import { site } from "../data/site";
     <SectionHeader
       kicker="demo"
       heading="See the system in action"
-      lead="The companion Streamlit app runs the full pipeline over the Utah FORGE DDR archive: hybrid retrieval, cited answers, and optional local LLM generation. Run it yourself in minutes — or preview it below."
+      lead="There are two apps. The book companion app is the one you build chapter by chapter — simple, inspectable, and runnable in minutes. DDR Intelligence is the full production pipeline built on the same foundations, showing where the book's techniques lead."
     />
-    <div class="mt-6 flex flex-wrap gap-3">
-      <CTAButton href="/project/">How to run it locally</CTAButton>
-      <CTAButton href={`${site.repoUrl}/tree/main/book/app`} variant="ghost">App source code</CTAButton>
+
+    <div class="mt-12">
+      <SectionHeader
+        kicker="the book companion app"
+        heading="What you build in the book"
+        lead="A Streamlit app over the Utah FORGE sample archive: hybrid retrieval (BM25 + embeddings), cited answers, and optional local LLM generation via Ollama. Every line of it is explained in Chapters 5–10."
+      />
+      <div class="mt-6 flex flex-wrap gap-3">
+        <CTAButton href="/project/">How to run it locally</CTAButton>
+        <CTAButton href={`${site.repoUrl}/tree/main/book/app`} variant="ghost">App source code</CTAButton>
+      </div>
     </div>
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2">
+    <div class="mt-16">
+      <SectionHeader
+        kicker="ddr intelligence — the full pipeline app"
+        heading="Where the techniques lead"
+        lead="DDR Intelligence is the author's full-archive application built on the same foundations the book teaches — 171 daily drilling reports turned into searchable, traceable operational intelligence. It lives in a separate repository."
+      />
+      <div class="mt-6">
+        <CTAButton href={site.pipelineRepoUrl} variant="ghost">Full pipeline repository ↗</CTAButton>
+      </div>
+    </div>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2">
       <ScreenshotCard
         src="/screenshots/corpus_search.png"
         title="Corpus Search"
