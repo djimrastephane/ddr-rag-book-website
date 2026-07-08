@@ -381,15 +381,3 @@ export const roadmap = [
   "Reranking model comparisons",
   "Additional local LLM configurations",
 ];
-
-// Future sections (placeholders — footer "Coming later"). EDIT/remove as they launch.
-export const futureSections = [
-  "Second Edition",
-  "Video Course",
-  "Interactive Labs",
-  "Community Showcase",
-  "Reader Projects",
-  "Newsletter",
-  "Speaking Engagements",
-  "Consulting",
-];
