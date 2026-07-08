@@ -10,10 +10,11 @@ import { site } from "../data/site";
   <section class="mx-auto max-w-6xl px-4 py-16">
     <SectionHeader kicker="the author" heading={site.authorName} />
     <div class="mt-8 grid gap-10 md:grid-cols-[240px_1fr]">
-      <!-- EDIT: replace with <img src="/author.jpg" ...> after adding public/author.jpg -->
-      <div class="flex aspect-square items-center justify-center rounded-lg border border-dashed border-line bg-panel">
-        <span class="font-mono text-xs text-slate-500">[ author photo ]</span>
-      </div>
+      <img
+        src="/author.jpg"
+        alt={site.authorName}
+        class="aspect-square w-full rounded-lg border border-line object-cover"
+      />
       <div class="max-w-2xl space-y-4 text-slate-300">
         <p>
           I've spent <strong class="text-white">17+ years in completions and well intervention</strong>,
