@@ -3,12 +3,20 @@
 import Base from "../layouts/Base.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import CTAButton from "../components/CTAButton.astro";
-import { site } from "../data/site";
+import {
+  site,
+  authorIdentity,
+  authorCareer,
+  philosophy,
+  whyIWroteThisBook,
+  publications,
+} from "../data/site";
 ---
 
 <Base title="About the Author" description={`About ${site.authorName}: 17+ years in completions, well intervention, stimulation and integrated well projects across 8 countries, MSc Data Science, practical industrial AI.`}>
   <section class="mx-auto max-w-6xl px-4 py-16">
     <SectionHeader kicker="the author" heading={site.authorName} />
+    <p class="mt-2 font-mono text-sm text-accent">{authorIdentity}</p>
     <div class="mt-8 grid gap-10 md:grid-cols-[240px_1fr]">
       <img
         src="/author.jpg"
@@ -45,6 +53,69 @@ import { site } from "../data/site";
       <CTAButton href="/contact/">Get in touch</CTAButton>
       <CTAButton href={`https://github.com/${site.repoOwner}`} variant="ghost">GitHub profile</CTAButton>
       <CTAButton href={site.linkedin} variant="ghost">LinkedIn</CTAButton>
+    </div>
+  </section>
+
+  <!-- ============ CAREER AT A GLANCE ============ -->
+  <section class="border-y border-line bg-panel/40">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <SectionHeader kicker="career at a glance" heading="Two decades of operations, across three continents" />
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <p class="font-mono text-2xl font-bold text-accent">{authorCareer.years}</p>
+          <p class="mt-1 text-xs text-slate-500">{authorCareer.education} · {authorCareer.extra}</p>
+        </div>
+        <div class="lg:col-span-2">
+          <p class="font-mono text-xs uppercase tracking-wide text-slate-500">Countries</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            {authorCareer.countries.map((c) => (
+              <span class="rounded-full border border-line bg-ink px-3 py-1 text-xs text-slate-300">{c}</span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p class="font-mono text-xs uppercase tracking-wide text-slate-500">Disciplines</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            {authorCareer.disciplines.map((d) => (
+              <span class="rounded-full border border-line bg-ink px-3 py-1 text-xs text-slate-300">{d}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENGINEERING PHILOSOPHY ============ -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader kicker="engineering philosophy" heading="What this project won't compromise on" />
+    <div class="mt-8 grid gap-3 sm:grid-cols-2">
+      {philosophy.map((p) => (
+        <blockquote class="rounded-lg border-l-2 border-accent bg-panel px-5 py-4 text-sm italic leading-relaxed text-slate-300">
+          "{p}"
+        </blockquote>
+      ))}
+    </div>
+  </section>
+
+  <!-- ============ WHY I WROTE THIS BOOK ============ -->
+  <section class="border-y border-line bg-panel/40">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <SectionHeader kicker="why i wrote this book" heading="Knowledge shouldn't stay locked in the archive" />
+      <p class="mt-6 max-w-3xl text-sm leading-relaxed text-slate-300">{whyIWroteThisBook}</p>
+    </div>
+  </section>
+
+  <!-- ============ PUBLICATIONS & PROJECTS ============ -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader kicker="publications & projects" heading="Where the work lives" />
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {publications.map((p) => (
+        <a href={p.url} class="card-lift rounded-lg border border-line bg-panel p-5 hover:border-accent/50">
+          <p class="font-mono text-[11px] uppercase tracking-wide text-accent">{p.type}</p>
+          <h3 class="mt-1 font-semibold text-white">{p.title}</h3>
+          <p class="mt-2 text-sm text-slate-400">{p.description}</p>
+        </a>
+      ))}
     </div>
   </section>
 </Base>

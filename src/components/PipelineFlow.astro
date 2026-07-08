@@ -1,0 +1,28 @@
+---
+// Horizontal flow diagram of the pipeline (homepage). Deliberately ends on
+// "Engineer Decision" — the system produces evidence, the engineer decides.
+import { pipelineFlow } from "../data/site";
+---
+
+<div class="flex flex-wrap items-center gap-x-2 gap-y-3">
+  {
+    pipelineFlow.map((step, i) => {
+      const isLast = i === pipelineFlow.length - 1;
+      return (
+        <>
+          <div
+            class:list={[
+              "rounded-md border px-3 py-2 text-center font-mono text-xs leading-tight",
+              isLast
+                ? "border-accent bg-accent/10 font-semibold text-accent"
+                : "border-line bg-panel text-slate-300",
+            ]}
+          >
+            {step}
+          </div>
+          {!isLast && <span class="text-accent" aria-hidden="true">→</span>}
+        </>
+      );
+    })
+  }
+</div>

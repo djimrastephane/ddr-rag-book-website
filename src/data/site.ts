@@ -48,6 +48,32 @@ export const pipeline = [
   "Engineering review",
 ];
 
+// Condensed version of the same pipeline for the homepage's visual flow
+// diagram. The engineer is the last stage deliberately: AI assists the
+// decision, it doesn't replace it. Verified counts only — see README.
+export const pipelineFlow = [
+  "Daily Drilling Reports",
+  "OCR",
+  "Cleaning",
+  "Chunking",
+  "Hybrid Retrieval",
+  "Local LLM (optional)",
+  "Evidence-Backed Answer",
+  "Engineer Decision",
+];
+
+// Credibility metrics shown as small badges under the hero CTAs.
+// EDIT: keep every value verifiable — no rounded-up or invented numbers.
+export const metrics = [
+  "17+ years operational engineering",
+  "12 chapters",
+  "44 automated tests",
+  "Streamlit companion app",
+  "MIT licensed",
+  "Runs 100% locally",
+  "Real Utah FORGE data",
+];
+
 // "What readers will build" cards.
 export const builds = [
   {
@@ -75,6 +101,12 @@ export const builds = [
     text: "Everything runs on your laptop with open-source tools. No GPU, no cloud account, no paid APIs, no data leaving your machine.",
   },
 ];
+
+// Concise explanatory paragraph shown above the "Why this matters" cards.
+export const whyItMattersIntro =
+  "Most operators hold decades of operational knowledge inside their Daily Drilling Report archives. " +
+  "That knowledge is hard to search because terminology shifts between engineers, contractors, and operators over the life of a field. " +
+  "Modern retrieval systems recover those lessons — while keeping every answer linked to the original engineering evidence.";
 
 // "Why this matters" points.
 export const whyItMatters = [
@@ -371,6 +403,77 @@ export const chapters: Chapter[] = [
     readingTime: "30 min",
     codingTime: "45 min",
     exercises: ["Trace one NPT event from first symptom to resolution across reports"],
+  },
+];
+
+// ============================================================
+// Author page content
+// ============================================================
+
+// Short line under the author's name, both on the homepage teaser and
+// the author page.
+export const authorIdentity = "Industrial AI Engineer · Completions & Well Intervention Engineer · Author";
+
+// Compact badges for the homepage author teaser (kept short — full detail
+// lives on /author/).
+export const homeCareerGlance = [
+  "17+ years",
+  "8 countries",
+  "Operations & Project Management",
+  "MSc Data Science",
+  "Open-source author",
+  "Industrial AI",
+];
+
+// Full "career at a glance" detail for the author page.
+export const authorCareer = {
+  years: "17+ years in operations",
+  countries: ["Australia", "India", "Malaysia", "UAE", "Bahrain", "Angola", "Chad", "UK"],
+  disciplines: ["Integrated drilling", "Completions", "Well intervention", "Engineering management"],
+  education: "MSc Data Science",
+  extra: "Open-source software",
+};
+
+// Engineering philosophy — the principles behind the book and the code.
+export const philosophy = [
+  "AI should support engineering judgment, not replace it.",
+  "Every answer should be traceable to engineering evidence.",
+  "If something can be calculated deterministically, don't generate it.",
+  "Operational data should stay under the operator's control.",
+  "Practical engineering problems should drive AI development, not the reverse.",
+];
+
+// Why the book exists — shown on the author page.
+export const whyIWroteThisBook =
+  "After nearly two decades of reading and writing Daily Drilling Reports across multiple countries and operators, " +
+  "the recurring frustration was the same: valuable engineering knowledge stayed locked inside the archive, one PDF at a time. " +
+  "This book shows engineers how to recover that knowledge with transparent, evidence-backed AI — built to be inspected, not trusted blindly.";
+
+// Publications & projects. EDIT: keep every link real and verifiable.
+export const publications = [
+  {
+    title: "Building Industrial RAG Systems from Daily Drilling Reports",
+    type: "Book",
+    description: "A practical guide to OCR, hybrid retrieval, and traceable engineering answers from real DDR archives.",
+    url: site.liveBookUrl,
+  },
+  {
+    title: "DDR RAG Companion App",
+    type: "Open-source software",
+    description: "The Streamlit app built alongside the book — retrieval, citations, and local LLM generation.",
+    url: `${site.repoUrl}/tree/main/book/app`,
+  },
+  {
+    title: "ddr-rag-book",
+    type: "GitHub repository",
+    description: "Full source for the book's code, tests, and sample DDR archive. MIT licensed.",
+    url: site.repoUrl,
+  },
+  {
+    title: "Removal of Sand Control Screens and Bottom Hole Assembly in Cased Hole Gravel Packed Wells in Chad, Africa",
+    type: "SPE-159600-MS",
+    description: "Technical paper on well intervention operations, Society of Petroleum Engineers.",
+    url: "https://doi.org/10.2118/159600-MS",
   },
 ];
 

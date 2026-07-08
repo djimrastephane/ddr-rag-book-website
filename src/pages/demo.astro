@@ -44,18 +44,44 @@ import { site } from "../data/site";
     </div>
 
     <div class="mt-12 max-w-3xl">
-      <SectionHeader kicker="example" heading="A typical interaction" />
-      <div class="mt-6 rounded-lg border border-line bg-panel p-5 font-mono text-sm leading-relaxed text-slate-300">
-        <p class="text-slate-500"># question</p>
-        <p class="text-white">&gt; What problems were reported while running the 9-5/8" casing?</p>
-        <p class="mt-3 text-slate-500"># answer (local LLM, citations attached)</p>
-        <p>
-          The reports describe an obstruction encountered during the casing run, requiring a wiper trip
-          before continuing <span class="text-accent">[DDR-042, ops summary]</span>, followed by circulation
-          losses treated with LCM <span class="text-accent">[DDR-043, mud report]</span>.
-        </p>
-        <p class="mt-3 text-xs text-slate-500">Illustrative example — run the app on the sample archive to see real output.</p>
+      <SectionHeader
+        kicker="example"
+        heading="A typical interaction"
+        lead="Five steps, every one of them visible to the reader — not just a question and an answer."
+      />
+      <div class="mt-6 grid gap-3">
+        <div class="rounded-lg border border-line bg-panel p-4">
+          <p class="font-mono text-[11px] uppercase tracking-wide text-accent">1 · Question</p>
+          <p class="mt-1 font-mono text-sm text-white">What problems were reported while running the 9-5/8" casing?</p>
+        </div>
+        <div class="rounded-lg border border-line bg-panel p-4">
+          <p class="font-mono text-[11px] uppercase tracking-wide text-accent">2 · Retrieved reports</p>
+          <p class="mt-1 font-mono text-xs text-slate-400">
+            DDR-042 (score 0.91) · DDR-043 (score 0.87) · DDR-039 (score 0.74)
+          </p>
+        </div>
+        <div class="rounded-lg border border-line bg-panel p-4">
+          <p class="font-mono text-[11px] uppercase tracking-wide text-accent">3 · Highlighted evidence</p>
+          <p class="mt-1 font-mono text-xs leading-relaxed text-slate-400">
+            "…ran into <mark class="rounded bg-accent/25 px-1 text-slate-200">obstruction at 6,210 ft, required wiper trip</mark> before resuming casing run…" — DDR-042, ops summary
+          </p>
+        </div>
+        <div class="rounded-lg border border-accent/40 bg-panel p-4">
+          <p class="font-mono text-[11px] uppercase tracking-wide text-accent">4 · Generated answer (local LLM)</p>
+          <p class="mt-1 font-mono text-sm text-slate-200">
+            The reports describe an obstruction encountered during the casing run, requiring a wiper trip
+            before continuing, followed by circulation losses treated with LCM.
+          </p>
+        </div>
+        <div class="rounded-lg border border-line bg-panel p-4">
+          <p class="font-mono text-[11px] uppercase tracking-wide text-accent">5 · Source citation</p>
+          <p class="mt-1 font-mono text-xs text-slate-400">
+            <span class="text-accent">[DDR-042, ops summary]</span> · <span class="text-accent">[DDR-043, mud report]</span>
+            — click through to the original report text.
+          </p>
+        </div>
       </div>
+      <p class="mt-3 text-xs text-slate-500">Illustrative example — run the app on the sample archive to see real output.</p>
     </div>
   </section>
 </Base>
