@@ -66,7 +66,7 @@ export const pipelineFlow = [
 // EDIT: keep every value verifiable — no rounded-up or invented numbers.
 export const metrics = [
   "17+ years operational engineering",
-  "12 chapters",
+  "13 chapters",
   "Streamlit companion app",
   "MIT licensed",
   "Runs 100% locally",
@@ -147,7 +147,7 @@ export const technologies: { name: string; what: string }[] = [
 
 // ============================================================
 // Chapters — mirrors the real repository structure
-// (book/code/chapter_01 … chapter_12). EDIT to adjust copy,
+// (book/code/chapter_01 … chapter_13). EDIT to adjust copy,
 // times, objectives, and exercises.
 // ============================================================
 export interface Chapter {
@@ -402,6 +402,27 @@ export const chapters: Chapter[] = [
     readingTime: "30 min",
     codingTime: "45 min",
     exercises: ["Trace one NPT event from first symptom to resolution across reports"],
+  },
+  {
+    num: 13,
+    title: "Daily Ingestion: Keeping the System Live",
+    summary:
+      "Fold each new report into a live, persisted index by appending — no nightly rebuild — and get told when a report doesn't arrive.",
+    folder: "book/code/chapter_13",
+    keyScript: "ingest.py",
+    objectives: [
+      "Ingest one new report incrementally instead of rebuilding from scratch",
+      "Understand why the dense index appends but BM25 must recompute",
+      "Catch duplicates at the door so a report is never indexed twice",
+    ],
+    skills: ["Incremental ingestion", "Live index maintenance"],
+    tech: ["FAISS", "BM25", "Python"],
+    readingTime: "35 min",
+    codingTime: "55 min",
+    exercises: [
+      "Build the index from nine of ten reports, then ingest the tenth and confirm it grows without a rebuild",
+      "Handle a corrected re-file: same date and report number, revised text, new filename",
+    ],
   },
 ];
 
