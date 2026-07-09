@@ -18,7 +18,7 @@ export const site = {
   // EDIT: contact details
   email: "stephane.djimra@gmail.com",
   linkedin: "https://www.linkedin.com/in/djimra-stephane-soulanoudjingar-3078a055",
-  authorName: "Stephane Djimra",
+  authorName: "Djimra Stephane Soulanoudjingar",
 };
 
 export const nav = [
