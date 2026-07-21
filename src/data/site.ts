@@ -136,7 +136,7 @@ export const technologies: { name: string; what: string }[] = [
   { name: "FAISS", what: "Searches millions of passages by meaning, fast" },
   { name: "BM25", what: "Classic keyword search — finds exact words and codes" },
   { name: "Sentence Transformers", what: "Converts report text into 'meaning vectors' for semantic search" },
-  { name: "PyMuPDF", what: "Reads text out of PDF reports" },
+  { name: "pdfplumber", what: "Reads text out of PDF reports" },
   { name: "OCR", what: "Reads text from scanned (image) report pages" },
   { name: "Hybrid Retrieval", what: "Combines keyword and meaning-based search for better results" },
   { name: "Ollama (local LLMs)", what: "Runs the answer-generating AI model on your own computer" },
@@ -187,7 +187,7 @@ export const chapters: Chapter[] = [
       "Inspect raw extracted text critically",
     ],
     skills: ["PDF text extraction", "Python file handling"],
-    tech: ["Python", "PyMuPDF"],
+    tech: ["Python", "pdfplumber"],
     readingTime: "25 min",
     codingTime: "30 min",
     exercises: [
@@ -283,7 +283,7 @@ export const chapters: Chapter[] = [
     summary:
       "Handle scanned DDRs with OCR and quality gates that catch garbage text before it poisons your index.",
     folder: "book/code/chapter_06",
-    keyScript: "OCR quality gates",
+    keyScript: "ocr_quality_gate.py",
     objectives: [
       "Detect scanned vs. digital pages",
       "Run OCR and score its output quality",
@@ -301,7 +301,7 @@ export const chapters: Chapter[] = [
     summary:
       "Split reports into token-aware chunks that keep operations intact and retrievable.",
     folder: "book/code/chapter_07",
-    keyScript: "token-aware chunking",
+    keyScript: "token_chunking.py",
     objectives: [
       "Choose chunk sizes for operational text",
       "Preserve report/date metadata per chunk",
@@ -319,7 +319,7 @@ export const chapters: Chapter[] = [
     summary:
       "Index the whole archive with FAISS so semantic search stays fast as the report count grows.",
     folder: "book/code/chapter_08",
-    keyScript: "FAISS indexing",
+    keyScript: "build_faiss_index.py",
     objectives: [
       "Build and persist a FAISS index",
       "Query it efficiently",
@@ -337,7 +337,7 @@ export const chapters: Chapter[] = [
     summary:
       "Fuse BM25 and dense retrieval so exact codes and fuzzy descriptions both find what they should.",
     folder: "book/code/chapter_09",
-    keyScript: "hybrid search",
+    keyScript: "hybrid_search.py",
     objectives: [
       "Combine keyword and semantic scores",
       "Tune the fusion weighting",
@@ -355,7 +355,7 @@ export const chapters: Chapter[] = [
     summary:
       "Make every generated answer auditable: report, date, passage, and confidence — engineering-grade citations.",
     folder: "book/code/chapter_10",
-    keyScript: "answer traceability",
+    keyScript: "traceable_answers.py",
     objectives: [
       "Attach structured provenance to every answer",
       "Detect unsupported claims",
@@ -387,21 +387,23 @@ export const chapters: Chapter[] = [
   },
   {
     num: 12,
-    title: "Cross-Report Sequences and Next Steps",
+    title: "Sequence Detection: Building Toward Cross-Well Intelligence",
     summary:
-      "Detect event sequences across reports and see where to take the system next.",
+      "Check whether a structured signal (torque) and a narrative event moved together on a real stuck-pipe day — and see honestly what one well can, and can't, prove.",
     folder: "book/code/chapter_12",
-    keyScript: "cross-report sequence detection",
+    keyScript: "torque_trend_check.py",
     objectives: [
-      "Track an operational event across multiple DDRs",
-      "Assemble timelines from retrieved evidence",
-      "Plan production-hardening next steps",
+      "Combine a structured numeric trend (torque) with narrative report text",
+      "Compute a real day-over-day percentage change instead of an estimate",
+      "Distinguish a same-day correlation from an unverified leading indicator",
     ],
-    skills: ["Sequence detection", "System design"],
+    skills: ["Structured + narrative correlation", "Honest scope-limiting"],
     tech: ["Python"],
     readingTime: "30 min",
     codingTime: "45 min",
-    exercises: ["Trace one NPT event from first symptom to resolution across reports"],
+    exercises: [
+      "Extend the torque trend with a later report's value and check whether the elevated reading persisted or dropped back to baseline",
+    ],
   },
   {
     num: 13,
